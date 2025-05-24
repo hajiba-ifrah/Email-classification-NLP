@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Project</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav id="main-nav">
+        <a href="#accueil">Accueil</a>
+        <a href="#nos-services">Nos Services</a>
+        <a href="#etudes-de-cas">Études de Cas</a>
+        <a href="#equipe">Équipe</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div id="main-content-container"> <!-- Padding-top will be adjusted by CSS based on nav height -->
+        <section id="accueil">
+            <div class="logo-placeholder"></div> <!-- Can be animated if desired -->
+            <h1 class="slogan animate-on-scroll fade-in slide-in-from-bottom">Votre vision, notre expertise, des résultats amplifiés.</h1>
+    </section>
+
+    <section id="nos-services">
+        <h2 class="animate-on-scroll fade-in slide-in-from-top">Nos Services</h2>
+        <div class="services-list">
+            <div class="service-item animate-on-scroll fade-in slide-in-from-left">
+                <h3>Achat d'espaces publicitaires</h3>
+                <p>Animation/effet 3D au survol à venir.</p>
+            </div>
+            <div class="service-item animate-on-scroll fade-in slide-in-from-bottom">
+                <h3>Stratégie d'enchères</h3>
+                <p>Animation/effet 3D au survol à venir.</p>
+            </div>
+            <div class="service-item animate-on-scroll fade-in slide-in-from-right">
+                <h3>Reciblage publicitaire</h3>
+                <p>Animation/effet 3D au survol à venir.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="etudes-de-cas">
+        <h2 class="animate-on-scroll fade-in slide-in-from-top">Études de Cas</h2>
+        <div class="slideshow-container animate-on-scroll fade-in">
+            <div class="slide"> <!-- Slide content itself is already animated by opacity for slideshow -->
+                <h3>Campagne Alpha - Augmentation de la Notoriété</h3>
+                <p>Description du succès obtenu pour la Campagne Alpha, mettant en lumière les stratégies innovantes et les résultats quantifiables.</p>
+            </div>
+            <div class="slide"> 
+                <h3>Projet Bêta - Optimisation du ROI</h3>
+                <p>Analyse détaillée de la manière dont le Projet Bêta a surpassé les attentes en termes de retour sur investissement grâce à nos solutions ciblées.</p>
+            </div>
+
+            <a class="prev animate-on-scroll slide-in-from-left">&#10094;</a>
+            <a class="next animate-on-scroll slide-in-from-right">&#10095;</a>
+        </div>
+    </section>
+
+    <section id="equipe">
+        <h2 class="animate-on-scroll fade-in slide-in-from-top">Notre Équipe</h2>
+        <div class="team-members-container">
+            <div class="team-member animate-on-scroll fade-in slide-in-from-left">
+                <div class="avatar-placeholder"></div>
+                <h3>Jean Dupont</h3>
+                <p>Directeur Stratégie</p>
+            </div>
+            <div class="team-member animate-on-scroll fade-in slide-in-from-bottom">
+                <div class="avatar-placeholder"></div>
+                <h3>Marie Curie</h3>
+                <p>Chef de Projet Publicitaire</p>
+            </div>
+            <div class="team-member animate-on-scroll fade-in slide-in-from-right">
+                <div class="avatar-placeholder"></div>
+                <h3>Ahmed Sylla</h3>
+                <p>Spécialiste SEO/SEA</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="animate-on-scroll fade-in slide-in-from-top">Contactez-Nous</h2>
+        <div class="form-container floating-effect animate-on-scroll fade-in"> <!-- Form container already has floating animation -->
+            <form action="#" method="POST">
+                <div class="form-group animate-on-scroll slide-in-from-left">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom" required>
+                </div>
+                <div class="form-group animate-on-scroll slide-in-from-right">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group animate-on-scroll slide-in-from-bottom">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-button animate-on-scroll fade-in">Envoyer</button>
+            </form>
+        </div>
+    </section>
+
+        </section>
+        <!-- ... other sections ... -->
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

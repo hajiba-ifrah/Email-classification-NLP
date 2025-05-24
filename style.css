@@ -1,0 +1,687 @@
+/* Basic styles will be added here later */
+
+/* Main Navigation Bar */
+#main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 0; /* Vertical padding, horizontal will be handled by link spacing or container */
+    background-color: rgba(0, 0, 0, 0.3); /* Initial semi-transparent background */
+    z-index: 1000; /* High z-index to stay on top */
+    text-align: center;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+    border-bottom: 1px solid transparent; /* For scrolled state */
+}
+
+#main-nav.scrolled {
+    background-color: rgba(10, 10, 10, 0.9); /* Darker, less transparent on scroll */
+    padding: 10px 0;
+    border-bottom: 1px solid #FFD700; /* Gold bottom border on scroll */
+}
+
+#main-nav a {
+    color: #FFD700; /* Gold text color */
+    margin: 0 20px; /* Spacing between links */
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    position: relative; /* For underline effect */
+}
+
+#main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #FFD700;
+    transition: width 0.3s ease;
+}
+
+#main-nav a:hover,
+#main-nav a.active-link { /* Class to be added by JS for the current section's link */
+    color: #fff200; /* Brighter gold on hover/active */
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.7);
+}
+
+#main-nav a:hover::after,
+#main-nav a.active-link::after {
+    width: 100%;
+}
+
+/* Adjust main content padding to account for nav bar height */
+#main-content-container {
+    padding-top: 70px; /* Initial padding, adjust if nav height changes */
+    /* position: relative; already set from previous task */
+}
+
+
+html {
+    scroll-behavior: smooth; /* For smooth scrolling when using nav links */
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scrollbars during transitions */
+}
+
+/* #main-content-container styling moved up to be with #main-nav */
+
+
+/* General Section Styling for Transition */
+#main-content-container > section {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh; /* Ensure sections take at least full viewport height */
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out, transform 0.8s ease-in-out;
+    transform: scale(0.95) perspective(1000px) translateZ(-50px); /* Initial state for 3D effect */
+    z-index: 1; /* Default stacking */
+    /* padding-top: 60px; /* This padding is now on #main-content-container itself */
+    box-sizing: border-box;
+}
+
+#main-content-container > section.active-section {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) perspective(1000px) translateZ(0);
+    z-index: 2; /* Active section on top */
+    position: relative; /* Take up space in document flow when active */
+}
+
+/* Adjustments for Accueil as it's full-screen by default */
+#accueil {
+    /* min-height: 100vh; already set by general section styling */
+    /* background-color and color are inherited or set by general section styles if needed */
+}
+
+#accueil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    animation: gradientAnimation 10s ease infinite;
+    background: linear-gradient(-45deg, #000000, #1a1a1a, #000000, #2c2c2c);
+    background-size: 400% 400%;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.logo-placeholder {
+    width: 150px;
+    height: 150px;
+    background-color: #FFD700;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 50%;
+    margin-bottom: 30px;
+}
+
+.slogan {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+/* Nos Services Section */
+#nos-services {
+    padding: 60px 20px;
+    background-color: #0d0d0d; /* Slightly lighter black for contrast */
+    text-align: center;
+}
+
+#nos-services h2 {
+    font-size: 2.2em;
+    color: #FFD700;
+    margin-bottom: 40px;
+}
+
+.services-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    perspective: 1000px; /* Added for 3D effect context */
+}
+
+.service-item {
+    background-color: #1a1a1a;
+    color: #FFD700;
+    padding: 30px;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s ease, box-shadow 0.5s ease; /* Adjusted transition duration for smoother 3D effect */
+    border: 1px solid #FFD700; /* Gold border */
+    transform-style: preserve-3d; /* Added for containing 3D transformed children if any in future */
+}
+
+.service-item:hover {
+    transform: translateY(-10px) rotateY(15deg); /* Combined translateY with rotateY */
+    box-shadow: 0 8px 16px rgba(255, 215, 0, 0.3); /* Adjusted shadow for more depth */
+}
+
+.service-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #FFD700;
+}
+
+.service-item p {
+    font-size: 1em;
+    color: #cccccc; /* Lighter text for description for better readability */
+}
+
+/* Études de Cas Section */
+#etudes-de-cas {
+    padding: 60px 20px;
+    background-color: #000000; /* Black background */
+    text-align: center;
+}
+
+#etudes-de-cas h2 {
+    font-size: 2.2em;
+    color: #FFD700;
+    margin-bottom: 40px;
+}
+
+.slideshow-container {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    background-color: #1a1a1a; /* Dark background for slides */
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #FFD700; /* Gold border */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    overflow: hidden; /* To contain sliding animations if chosen later, or prevent overflow from zoom */
+}
+
+.slide {
+    padding: 20px;
+    color: #FFD700; /* Gold text for slide content */
+    /* For fade animation */
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+    position: absolute; /* For stacking slides in the same space */
+    width: calc(100% - 40px); /* Account for slideshow-container padding */
+    left: 20px; /* Account for slideshow-container padding */
+    top: 80px; /* Adjust as needed based on title height and padding */
+    display: none; /* Will be controlled by JS */
+}
+
+.slide.active {
+    opacity: 1;
+    display: block; /* Show active slide */
+    position: relative; /* Take up space in the flow when active */
+    /* Reset position properties when active if absolute positioning was only for transition */
+    /* top: 0; left: 0; width: 100%; */
+}
+
+.slide:hover {
+    transform: scale(1.02); /* Slight zoom-in effect */
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); /* Subtle gold glow */
+    /* Ensure hover doesn't conflict too much with transition if absolute positioned */
+    z-index: 10; /* Bring hovered slide to front if they overlap */
+}
+
+
+.slide h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: #FFD700;
+}
+
+.slide p {
+    font-size: 1.1em;
+    color: #cccccc; /* Lighter text for description */
+    line-height: 1.6;
+}
+
+/* Prev/Next buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -30px; /* Adjust based on button size and slide content */
+    color: #000000;
+    background-color: #FFD700; /* Gold background for buttons */
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.3s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    border: 1px solid #000000; /* Black border for buttons */
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev {
+    left: 0;
+}
+
+.prev:hover, .next:hover {
+    background-color: #000000; /* Black background on hover */
+    color: #FFD700; /* Gold text on hover */
+    border-color: #FFD700; /* Gold border on hover */
+}
+
+/* Notre Équipe Section */
+#equipe {
+    padding: 60px 20px;
+    background-color: #0d0d0d; /* Slightly lighter black for contrast */
+    text-align: center;
+}
+
+#equipe h2 {
+    font-size: 2.2em;
+    color: #FFD700;
+    margin-bottom: 50px;
+}
+
+.team-members-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.team-member {
+    background-color: #1a1a1a;
+    color: #FFD700;
+    padding: 25px;
+    border-radius: 8px;
+    width: 280px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    border: 1px solid #FFD700;
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: scale(1.05);
+}
+
+.avatar-placeholder {
+    width: 120px;
+    height: 120px;
+    background-color: #FFD700;
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    font-weight: bold;
+    font-size: 1.2em;
+    /* content: "3D"; /* Removed as canvas will be here */
+}
+
+.team-member h3 {
+    font-size: 1.6em;
+    margin-bottom: 8px;
+    color: #FFD700;
+}
+
+.team-member p {
+    font-size: 1em;
+    color: #cccccc;
+}
+
+/* Contactez-Nous Section */
+#contact {
+    padding: 60px 20px;
+    background-color: #000000; /* Black background */
+    text-align: center;
+    position: relative; /* For potential pseudo-elements or complex positioning */
+    overflow: hidden; /* Ensures floating effects don't break layout */
+}
+
+#contact h2 {
+    font-size: 2.2em;
+    color: #FFD700;
+    margin-bottom: 40px;
+}
+
+.form-container {
+    background-color: #1a1a1a; /* Dark background for the form */
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid #FFD700; /* Gold border */
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 215, 0, 0.2); /* Main shadow and subtle gold glow */
+    position: relative; /* Needed for z-index if other elements are added */
+    animation: floatAnimation 6s ease-in-out infinite;
+}
+
+@keyframes floatAnimation {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    color: #FFD700; /* Gold color for labels */
+    margin-bottom: 8px;
+    font-size: 1.1em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #FFD700; /* Gold border for inputs */
+    background-color: #0d0d0d; /* Very dark background for inputs */
+    color: #ffffff; /* White text for inputs */
+    font-size: 1em;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Added transitions */
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #fff200; /* Brighter gold on focus */
+    background-color: #1f1f1f; /* Slightly lighter background on focus */
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.6); /* Enhanced shadow */
+}
+
+.submit-button {
+    background-color: #FFD700; /* Gold background */
+    color: #000000; /* Black text */
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.2); /* Subtle initial shadow */
+}
+
+.submit-button:hover {
+    background-color: #e6c200; /* Darker gold on hover */
+    transform: scale(1.05); /* Slightly more pronounced scale */
+    box-shadow: 0 6px 15px rgba(255, 215, 0, 0.4); /* Enhanced shadow on hover for "lift" */
+}
+
+.submit-button:active {
+    transform: scale(0.98); /* Button presses down */
+    background-color: #cca300; /* Even darker gold */
+    box-shadow: 0 2px 5px rgba(255, 215, 0, 0.3); /* Shadow when pressed */
+}
+
+/* Scroll-based Animations */
+.animate-on-scroll {
+    opacity: 0;
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.fade-in {
+    /* opacity: 0; is already set by .animate-on-scroll */
+}
+
+.slide-in-from-left {
+    transform: translateX(-50px);
+}
+
+.slide-in-from-right {
+    transform: translateX(50px);
+}
+
+.slide-in-from-bottom {
+    transform: translateY(50px);
+}
+
+.slide-in-from-top {
+    transform: translateY(-50px);
+}
+
+/* When .is-visible is added by JS */
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateX(0) translateY(0); /* Reset transforms */
+}
+
+/* --- Media Queries for Responsiveness --- */
+
+/* Tablets and larger mobile devices */
+@media (max-width: 768px) {
+    /* Navigation Adjustments */
+    #main-nav a {
+        margin: 0 10px; /* Reduce spacing */
+        font-size: 1em;   /* Slightly smaller font */
+    }
+    #main-content-container {
+        padding-top: 60px; /* Adjust if nav padding changes */
+    }
+    #main-nav.scrolled {
+        padding: 8px 0;
+    }
+
+
+    /* General Font Size Adjustments */
+    h1.slogan {
+        font-size: 2em; /* Reduce slogan font size */
+    }
+    h2 { /* Section titles */
+        font-size: 1.8em;
+    }
+
+    /* Accueil Section */
+    .logo-placeholder { /* 3D Logo in Accueil */
+        width: 120px;
+        height: 120px;
+        margin-bottom: 20px;
+    }
+
+    /* Nos Services Section */
+    .services-list {
+        flex-direction: column;
+        align-items: center; /* Center items when stacked */
+    }
+    .service-item {
+        width: 90%; /* Wider items when stacked */
+        max-width: 400px; /* Max width for larger tablets */
+        margin-bottom: 20px;
+    }
+
+    /* Études de Cas Section */
+    .slideshow-container {
+        max-width: 90%;
+    }
+    .slide h3 {
+        font-size: 1.5em;
+    }
+    .slide p {
+        font-size: 1em;
+    }
+    .prev, .next {
+        padding: 12px;
+        font-size: 18px;
+    }
+
+
+    /* Notre Équipe Section */
+    .team-members-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .team-member {
+        width: 90%; /* Wider items when stacked */
+        max-width: 400px;
+        margin-bottom: 20px;
+    }
+    .avatar-placeholder { /* 3D Avatars in Equipe */
+        width: 100px;
+        height: 100px;
+    }
+
+    /* Contactez-Nous Section */
+    .form-container {
+        max-width: 90%;
+        padding: 30px;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group textarea {
+        padding: 10px;
+    }
+    .submit-button {
+        padding: 10px 20px;
+        font-size: 1.1em;
+    }
+}
+
+/* Smaller mobile devices */
+@media (max-width: 480px) {
+    #main-content-container {
+        padding-top: 55px; /* Adjust if nav padding changes */
+    }
+    #main-nav.scrolled {
+        padding: 6px 0;
+    }
+    #main-nav a {
+        margin: 0 5px;  /* Further reduce spacing */
+        font-size: 0.9em; /* Smaller font for very small screens */
+    }
+    #main-nav a::after { /* Underline effect adjustment */
+        bottom: -3px;
+    }
+
+
+    h1.slogan {
+        font-size: 1.6em;
+    }
+    h2 { /* Section titles */
+        font-size: 1.6em;
+        margin-bottom: 30px;
+    }
+    
+    /* Accueil Section */
+    .logo-placeholder {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* Nos Services Section */
+    .service-item {
+        padding: 20px;
+    }
+    .service-item h3 {
+        font-size: 1.3em;
+    }
+
+    /* Études de Cas Section */
+    .slide h3 {
+        font-size: 1.3em;
+    }
+    .slide p {
+        font-size: 0.9em;
+    }
+     .prev, .next {
+        padding: 10px;
+        font-size: 16px;
+        margin-top: -25px;
+    }
+
+
+    /* Notre Équipe Section */
+    .team-member {
+        padding: 20px;
+    }
+    .avatar-placeholder {
+        width: 80px;
+        height: 80px;
+        font-size: 1em; /* For the "3D" text if it were there */
+    }
+    .team-member h3 {
+        font-size: 1.3em;
+    }
+
+
+    /* Contactez-Nous Section */
+    .form-container {
+        padding: 20px;
+    }
+    .form-group label {
+        font-size: 1em;
+    }
+}
+
+/* Extra Small mobile devices */
+@media (max-width: 360px) {
+    #main-nav {
+        display: flex; /* Use flexbox for better control of link spacing */
+        justify-content: space-around; /* Distribute links evenly */
+        align-items: center;
+        flex-wrap: wrap; /* Allow wrapping if necessary */
+    }
+    #main-nav a {
+        font-size: 0.8em; /* Further reduce font size */
+        margin: 0 3px;  /* Minimal margin */
+        padding: 5px 0; /* Add some vertical padding if they wrap */
+    }
+    #main-content-container {
+        padding-top: 65px; /* Potentially increased nav height if links wrap */
+    }
+    #main-nav.scrolled {
+         /* Keep padding consistent or adjust if flex wrap changes height */
+    }
+
+    h1.slogan {
+        font-size: 1.4em;
+    }
+    h2 { /* Section titles */
+        font-size: 1.4em;
+    }
+}
